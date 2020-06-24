@@ -65,7 +65,7 @@ def demo_test(clf, test_data=data_generator()):
 # test_type = 'separable'
 # test_type = 'soft'
 test_type = 'circle'
-data = data_generator(test_type, n=500)
+data = data_generator(test_type, n=5000)
 pos, neg = data[0], data[1]
 plt.scatter(pos[:,0], pos[:,1], marker='o')
 plt.scatter(neg[:,0], neg[:,1], marker='x')
@@ -91,13 +91,9 @@ else:
     # demo_test(sk_svm.SVC(kernel='poly', degree=2, C=1.0), data)
     # t2 = time.time()
     # print 'Time consumed (skSVM):', t2 - t1, 'seconds'
-    t1 = time.time()
-    demo_test(svm.BinarySVM(kernel='rbf', alg='SMO', C=1.0, gamma = 1), data)
-    t2 = time.time()
-    print ('Time consumed (mySVM):', t2 - t1, 'seconds')
 
     
-    #t1 = time.time()
-    #demo_test(svm.MultiSVM(kernel='rbf', alg='SMO', C=1.0, gamma = 0.006), data)
-    #t2 = time.time()
-    #print ('Time consumed (myP2SMO):', t2 - t1, 'seconds')
+    t1 = time.time()
+    demo_test(svm.MultiSVM(kernel='rbf', alg='SMO', C=1.0, gamma = 1), data)
+    t2 = time.time()
+    print ('Time consumed (myP2SMO):', t2 - t1, 'seconds')
